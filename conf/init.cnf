@@ -1,0 +1,97 @@
+# Configuration File for QSS_NXL
+# -------------------------------------------------------------
+
+# 程序服务名称
+server-name = 主从分布式爬虫之主控服务器(Master)
+
+# 服务运行的本机IP
+server-ip = 192.168.0.101
+# 服务监听端口号
+server-port = 7000
+# 监控服务端口号
+monitor-port = 7001
+
+# 客户端Socket超时时间(毫秒)
+sock-timeout = 20000
+
+# 通信线程数
+comm-thread-max = 1
+# 通信线程使用内存大小
+comm-buffer-size = 1024
+# 通信线程监控超时时间(毫秒)
+comm-thread-timeout = 10000
+
+# 工作线程数
+work-thread-max = 1
+# 工作线程使用内存大小
+work-buffer-size = 3145728
+# 工作线程监控超时时间(毫秒)
+work-thread-timeout = 30000
+
+# 入口扫描线程数
+scan-thread-max = 1
+# 入口扫描线程使用内存大小
+scan-buffer-size = 3145728
+# 入口扫描线程监控超时时间(毫秒)
+scan-thread-timeout = 30000
+
+# 抽取线程数
+extract-thread-max = 8
+# 解析线程使用内存大小
+extract-buffer-size = 3145728
+# 解析线程监控超时时间(毫秒)
+extract-thread-timeout = 30000
+
+# 发送线程数
+send-thread-max = 1
+# 发送线程使用内存大小
+send-buffer-size = 1048576
+# 工作线程监控超时时间(毫秒)
+send-thread-timeout = 10000
+
+# 自动更新
+auto-update = yes
+# 仅仅更新
+only-update = yes
+
+# 更新延时
+update-interval = 10000
+# 下载延时(毫秒)
+download-interval = 0
+# 下载超时时间(毫秒)
+download-timeout = 15000
+
+# 最大重试次数
+retry-num-max = 5
+# 重试间隔时间
+retry-interval = 1000
+
+chunk-size = 3148576
+
+# 任务队列最大空间
+client-queue-size = 100
+# 调度队列最大任务数
+task-queue-size = 100
+
+# 模板初始化路径
+templ-list-path = ../conf/listPage.xml
+templ-detail-path = ../conf/detailPage.xml
+
+# 图片服务器(图片存储系统)
+img-server = 192.168.0.101
+img-port = 8091
+
+# 发送数据目录
+send-data-path = ./data
+# 发送数据备份目录
+send-bak-path = ../bin/data/bak
+# 发送数据落地文件路径
+send-write-path = ../bin/data/write.snd
+# 发送数据读取文件路径
+send-read-path = ../bin/data/read.snd
+
+# 发送数据IP地址(数据存储系统)
+send-ip = 192.168.0.101
+# 发送数据PORT端口号
+send-port = 21111
+
