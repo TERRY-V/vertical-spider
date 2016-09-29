@@ -1528,6 +1528,15 @@ static inline std::vector<std::string> q_line_tokenize(const std::string& ss)
 	return sents;
 }
 
+static inline std::string q_get_host(const std::string& url)
+{
+	uint32_t i=0;
+	int32_t count=0;
+	for(; i<url.size(); ++i)
+		if(url[i]=='/' && ++count==3) break;
+	return url.substr(0, i);
+}
+
 static inline std::string q_repair_url(const std::string& url, const std::string& host)
 {
 	std::string s("");

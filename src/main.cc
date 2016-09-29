@@ -1,48 +1,47 @@
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <algorithm>
-#include <cassert>
+#include "spiderserver.h"
 
-#include "qspiderserver.h"
+Q_USING_NAMESPACE
 
-class QSpiderService : public QService {
+class SpiderService : public QService {
 	public:
-		QSpiderService()
+		SpiderService()
 		{}
 
-		virtual ~QSpiderService()
-		{}
+		virtual ~SpiderService()
+		{}  
 
 		virtual int32_t init()
 		{
-			int32_t ret=qss.init("../conf/init.cnf");
+			int32_t ret = 0;
+
+			ret = server.init("../conf/init.conf");
 			if(ret<0) {
-				Q_INFO("QSpiderServer: init failed, ret = (%d)!", ret);
-				return -1;
+				Q_INFO("SpiderServer: init failed, ret = (%d)!", ret);
+				return -1; 
 			}
 			return 0;
 		}
 
 		virtual int32_t run(int32_t argc, char** argv)
 		{
-			Q_INFO("QSpiderServer: init success, now to start...");
-			qss.run();
-			Q_INFO("QSpiderServer now to quit!");
+			Q_INFO("SpiderServer: now to start...");
+			server.start();
+
+			Q_INFO("SpiderServer: now to quit!");
 			return 0;
 		}
 
 		virtual int32_t destroy()
-		{
+		{   
 			return 0;
-		}
-	
+		}   
+
 	private:
-		QSpiderServer qss;
+		SpiderServer server;
 };
 
 int32_t main(int32_t argc, char **argv)
 {
-	QSpiderService qss;
-	return qss.main(argc, argv);
+	SpiderService service;
+	return service.main(argc, argv);
 }

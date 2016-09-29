@@ -56,9 +56,10 @@ LIBS		:=
 # Targets of the build
 #****************************************************************************
 
-OUTPUT		:= ../bin/spider-server
+OUTPUT_1	:= ../bin/spider-server
+OUTPUT_2	:= ../bin/testRegex
 
-all: ${OUTPUT}
+all: ${OUTPUT_1} ${OUTPUT_2}
 
 #****************************************************************************
 # Source files
@@ -71,26 +72,31 @@ SRCS		+= qfile.cc
 SRCS		+= qlogger.cc
 SRCS		+= qnetworkaccessmanager.cc
 SRCS		+= qservice.cc
-SRCS		+= qsocketpool.cc
-SRCS		+= ServerPicker.cc
-SRCS		+= downloader.cc
-SRCS		+= parser.cc
 SRCS		+= templatemanager.cc
-SRCS            += imagewriter.cc
 SRCS		+= qremotemonitor.cc
-SRCS		+= qspiderserver.cc
+SRCS		+= qtcpsocket.cc
 SRCS		+= tinyxml2.cpp
-SRCS		+= main.cc
+SRCS		+= htmlparser.cc
+SRCS		+= urlprocessor.cc
+SRCS		+= spiderserver.cc
+SRCS_1		:= main.cc
+SRCS_2		:= testRegex.cc
 
-OBJS		:= $(addsuffix .o, $(basename ${SRCS}))
+OBJS_1		:= $(addsuffix .o, $(basename ${SRCS} ${SRCS_1}))
+OBJS_2		:= $(addsuffix .o, $(basename ${SRCS} ${SRCS_2}))
 
 #****************************************************************************
 # Output
 #****************************************************************************
 
-${OUTPUT}: $(OBJS)
+${OUTPUT_1}: $(OBJS_1)
 	@echo Linking ...
-	${LD} -o $@ ${OBJS} ${LIBS} ${LDFLAGS}
+	${LD} -o $@ ${OBJS_1} ${LIBS} ${LDFLAGS}
+	@echo ^_^ Congratulations!
+
+${OUTPUT_2}: $(OBJS_2)
+	@echo Linking ...
+	${LD} -o $@ ${OBJS_2} ${LIBS} ${LDFLAGS}
 	@echo ^_^ Congratulations!
 
 #****************************************************************************

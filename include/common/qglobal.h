@@ -299,6 +299,12 @@ typedef int32_t ptrdiff_t;			// 32 bit signed
 #define CR (uint8_t)13
 #define CRLF "\x0d\x0a"
 
+// 自定义终端颜色
+#define Q_COLOR_NULL ("\x1B[0m")
+#define Q_COLOR_RED ("\x1B[31m")
+#define Q_COLOR_GREEN ("\x1B[32m")
+#define Q_COLOR_YELLOW ("\x1B[33m")
+
 // 自定义状态码
 #define STAT_OK (0)
 #define STAT_ERR (-1)
@@ -347,8 +353,8 @@ static inline void Q_DEBUG(const char* format, ...)
 
 	va_list args;
 	va_start(args, format);
-	fprintf(stdout, "[%04d-%02d-%02d %02d:%02d:%02d] ", ptm->tm_year+1900, ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
-	fprintf(stdout, "DEBUG: ");
+	fprintf(stdout, "%s[%04d-%02d-%02d %02d:%02d:%02d] ", Q_COLOR_YELLOW, ptm->tm_year+1900, ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
+	fprintf(stdout, "DEBUG: %s", Q_COLOR_NULL);
 	vfprintf(stdout, format, args);
 	fprintf(stdout, "\n");
 	va_end(args);
@@ -362,8 +368,8 @@ static inline void Q_INFO(const char* format, ...)
 
 	va_list args;
 	va_start(args, format);
-	fprintf(stdout, "[%04d-%02d-%02d %02d:%02d:%02d] ", ptm->tm_year+1900, ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
-	fprintf(stdout, "INFO: ");
+	fprintf(stdout, "%s[%04d-%02d-%02d %02d:%02d:%02d] ", Q_COLOR_YELLOW, ptm->tm_year+1900, ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
+	fprintf(stdout, "INFO: %s", Q_COLOR_NULL);
 	vfprintf(stdout, format, args);
 	fprintf(stdout, "\n");
 	va_end(args);
@@ -376,8 +382,8 @@ static inline void Q_FATAL(const char* format, ...)
 
 	va_list args;
 	va_start(args, format);
-	fprintf(stderr, "[%04d-%02d-%02d %02d:%02d:%02d] ", ptm->tm_year+1900, ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
-	fprintf(stderr, "FATAL failed: ");
+	fprintf(stderr, "%s[%04d-%02d-%02d %02d:%02d:%02d] ", Q_COLOR_RED, ptm->tm_year+1900, ptm->tm_mon+1, ptm->tm_mday, ptm->tm_hour, ptm->tm_min, ptm->tm_sec);
+	fprintf(stderr, "FATAL failed: %s", Q_COLOR_NULL);
 	vfprintf(stderr, format, args);
 	fprintf(stderr, "\n");
 	va_end(args);
