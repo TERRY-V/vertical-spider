@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<doc>
+	<base meaning="模板基本信息">
+		<website meaning="网站名称"><![CDATA[海报时尚网]]></website>
+		<siteurl meaning="网站名称"><![CDATA[http://www.haibao.com/]]></siteurl>
+		<xmllabel meaning="XML根标签"><![CDATA[doc]]></xmllabel>
+	</base>
+	<templs meaning="模板数据信息">
+		<templ>
+			<urlpattern meaning="URL模式"><![CDATA[http://[a-z]+.haibao.com/[a-z]+/[0-9]+/[0-9]+.htm]]></urlpattern>
+			<wflag meaning="是否存储标记"><![CDATA[FALSE]]></wflag>
+			<units meaning="模板单元信息">
+				<unit meaning="模板单元">
+					<unitname meaning="模板单元名称"><![CDATA[详情页抽取]]></unitname>
+					<unitlabel meaning="模板单元标签"><![CDATA[links]]></unitlabel>
+					<items meaning="模板项信息">
+						<item meaning="模板项">
+							<itemname meaning="模板项名称"><![CDATA[详情页数据]]></itemname>
+							<itemlabel meaning="模板项标签"><![CDATA[link]]></itemlabel>
+							<itemloop meaning="循环抽取"><![CDATA[TRUE]]></itemloop>
+							<itemrelation meaning="模板项关系"><![CDATA[OR]]></itemrelation>
+							<regexes meaning="模板项正则项信息">
+								<regex meaning="正则项"><![CDATA[<div\s*class="todya_new_itemdesc\s*clearfix">\s*<a\s*href="([^"]*)"]]></regex>
+							</regexes>
+							<labels meaning="模板项标签信息">
+								<label meaning="模板项标签"><![CDATA[url]]></label>
+							</labels>
+						</item>
+						<item meaning="模板项">
+							<itemname meaning="模板项名称"><![CDATA[翻页信息]]></itemname>
+							<itemlabel meaning="模板项标签"><![CDATA[link]]></itemlabel>
+							<itemloop meaning="循环抽取"><![CDATA[TRUE]]></itemloop>
+							<itemrelation meaning="模板项关系"><![CDATA[OR]]></itemrelation>
+							<regexes meaning="模板项正则项信息">
+								<regex meaning="正则项"><![CDATA[<a\s*class="next\s*"\s*href="(.*?)">下一页</a>]]></regex>
+							</regexes>
+							<labels meaning="模板项标签信息">
+								<label meaning="模板项标签"><![CDATA[url]]></label>
+							</labels>
+						</item>
+					</items>
+				</unit>
+			</units>
+		</templ>
+		<templ>
+			<urlpattern meaning="URL模式"><![CDATA[http://[a-z]+.haibao.com/article/[0-9]+(?:|_[0-9]+).htm]]></urlpattern>
+			<wflag meaning="是否存储标记"><![CDATA[TRUE]]></wflag>
+			<units meaning="模板单元信息">
+				<unit meaning="模板单元">
+					<unitname meaning="模板单元名称"><![CDATA[基本信息]]></unitname>
+					<unitlabel meaning="模板单元标签"><![CDATA[basic]]></unitlabel>
+					<items meaning="模板项信息">
+						<item meaning="模板项">
+							<itemname meaning="模板项名称"><![CDATA[标题]]></itemname>
+							<itemloop meaning="循环抽取"><![CDATA[FALSE]]></itemloop>
+							<itemrelation meaning="模板项关系"><![CDATA[OR]]></itemrelation>
+							<regexes meaning="模板项正则项信息">
+								<regex meaning="正则项"><![CDATA[<title>([\s\S]*?)</title>]]></regex>
+							</regexes>
+							<labels meaning="模板项标签信息">
+								<label meaning="模板项标签"><![CDATA[title]]></label>
+							</labels>
+						</item>
+						<item meaning="模板项">
+							<itemname meaning="模板项名称"><![CDATA[当前页码]]></itemname>
+							<itemloop meaning="循环抽取"><![CDATA[FALSE]]></itemloop>
+							<itemrelation meaning="模板项关系"><![CDATA[OR]]></itemrelation>
+							<regexes meaning="模板项正则项信息">
+								<regex meaning="正则项"><![CDATA[class="active">([^"]*)</a>]]></regex>
+							</regexes>
+							<labels meaning="模板项标签信息">
+								<label meaning="模板项标签"><![CDATA[page]]></label>
+							</labels>
+						</item>
+					</items>
+				</unit>
+				<unit>
+					<unitname meaning="模板单元名称"><![CDATA[图片信息]]></unitname>
+					<unitlabel meaning="模板单元标签"><![CDATA[images]]></unitlabel>
+					<items meaning="模板项信息">
+						<item meaning="模板项">
+							<itemname meaning="模板项名称"><![CDATA[图片]]></itemname>
+							<itemlabel meaning="模板项标签"><![CDATA[image]]></itemlabel>
+							<itemloop meaning="循环抽取"><![CDATA[TRUE]]></itemloop>
+							<itemrelation meaning="模板项关系"><![CDATA[OR]]></itemrelation>
+							<regexes meaning="模板项正则项信息">
+								<regex meaning="正则项"><![CDATA[<a\s*target='_blank'\s*href=[\s\S]*?<img\s*src="([^"]*)"]]></regex>
+							</regexes>
+							<labels meaning="模板项标签信息">
+								<label meaning="模板项标签"><![CDATA[imglink]]></label>
+							</labels>
+						</item>
+					</items>
+				</unit>
+				<unit meaning="模板单元">
+					<unitname meaning="模板单元名称"><![CDATA[链接信息]]></unitname>
+					<unitlabel meaning="模板单元标签"><![CDATA[links]]></unitlabel>
+					<items meaning="模板项信息">
+						<item meaning="模板项">
+							<itemname meaning="模板项名称"><![CDATA[详情页数据]]></itemname>
+							<itemlabel meaning="模板项标签"><![CDATA[link]]></itemlabel>
+							<itemloop meaning="循环抽取"><![CDATA[TRUE]]></itemloop>
+							<itemrelation meaning="模板项关系"><![CDATA[OR]]></itemrelation>
+							<regexes meaning="模板项正则项信息">
+								<regex meaning="正则项"><![CDATA[class="next\s*"\s*href="([^"]*)">]]></regex>
+							</regexes>
+							<labels meaning="模板项标签信息">
+								<label meaning="模板项标签"><![CDATA[url]]></label>
+							</labels>
+						</item>
+					</items>
+				</unit>
+			</units>
+		</templ>
+	</templs>
+</doc>
